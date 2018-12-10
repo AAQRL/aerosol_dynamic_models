@@ -1,0 +1,7 @@
+1 ! Flag for coagulation
+10000 ! Number of discrete sizes
+100e-3 1000 0.5e-9 ! Molecular Weight of the species, Density of the species, diameter of the first discrete size
+1.0e16 ! Initial Number Concentration (#/m^3)
+1 ! Final time in seconds
+1e-2 ! dt : time step
+1e6 ! Minimum Number Concentration Tracking for accuracy. This will be used to find atol and rtol
