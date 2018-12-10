@@ -1,0 +1,25 @@
+# depslib dependency file v1.0
+1527648354 source:b:\_research\!_papers\7_discrete_model\dsm_f90\codeblocks_debug\dsm_f90\preci.f90
+
+1544162824 source:b:\_research\!_papers\7_discrete_model\dsm_f90\codeblocks_debug\dsm_f90\dtwodq_mod.f90
+
+1544411014 source:b:\_research\!_papers\7_discrete_model\dsm_f90\codeblocks_debug\dsm_f90\globals.f90
+
+1544410527 source:b:\_research\!_papers\7_discrete_model\dsm_f90\codeblocks_debug\dsm_f90\aux_data_funcs.f90
+
+1544411182 source:b:\_research\!_papers\7_discrete_model\dsm_f90\codeblocks_debug\dsm_f90\funcs.f90
+
+1544410337 source:b:\_research\!_papers\7_discrete_model\dsm_f90\codeblocks_debug\dsm_f90\ot_mod.f90
+
+1544410380 source:b:\_research\!_papers\7_discrete_model\dsm_f90\codeblocks_debug\dsm_f90\xdoteq_mod.f90
+
+1544410408 source:b:\_research\!_papers\7_discrete_model\dsm_f90\codeblocks_debug\dsm_f90\quad_glegq.f90
+
+1544410600 source:b:\_research\!_papers\7_discrete_model\dsm_f90\codeblocks_debug\dsm_f90\rk45_init0.f90
+
+1544411387 source:b:\_research\!_papers\7_discrete_model\dsm_f90\codeblocks_debug\dsm_f90\calbeta_mod.f90
+
+1544412468 source:b:\_research\!_papers\7_discrete_model\dsm_f90\codeblocks_debug\dsm_f90\discsecpb.f90
+
+1544411349 source:b:\_research\!_papers\7_discrete_model\dsm_f90\codeblocks_debug\dsm_f90\calbeta_common.f90
+

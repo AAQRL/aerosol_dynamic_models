@@ -1,0 +1,11 @@
+'2p-no-noise.txt'        			/signal
+1.5708  		                   	/theta
+'FDM'                               	/method (FDM/RRT/DFT)
+4	                            	/Nsig
+-9000 4500 	                  	/wmin wmax
+'par',	1d-4	                     	/parameters, output threshhold
+'fdm','none','none' 	          	/ReSpectrum,ImSpectrum,AbsSpectrum
+1., 512, -20                          	/rho, Nb0, Nbc
+20000, 5d-2				/Npower, Gamm
+1 F                             	/cheat, cheatmore
+1d-8                             	/ros

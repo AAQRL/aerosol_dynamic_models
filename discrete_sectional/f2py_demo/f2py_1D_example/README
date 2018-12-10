@@ -1,0 +1,265 @@
+log:
+Mar 20 2008
+
+Option Priority
+---------------
+NB: How parameters are passed to the fd_rr1d program:
+1 - if a parameter file is supplied (--paramfile=./PAR_A.param), it will be
+    consulted for all the parameters first.
+2 - if commandline parameters are entered at the same time
+    (--paramfile=./PAR_A.param --theta-3.452)
+    then the commandline parameter will override the one given in the file.
+3 - if neither the parameter file nor the commandline options provide a
+    value for the parameter, the default value which is hard-coded in the
+    python source will be consulted.
+4 - all the parameters used will be written into the database for the run.
+
+
+
+Database connectivity
+---------------------
+
+Database schema (in .sql file).
+
+-- save into file "shaka_all_data.sql"
+
+DROP TABLE IF EXISTS all_data CASCADE;
+CREATE TABLE all_data (
+id          SERIAL UNIQUE PRIMARY KEY,
+date        timestamp with time zone,
+username    varchar(12),
+hostname    varchar(40),
+ipnbr       varchar(15),
+os          varchar(20),              -- output of 'uname' to establish platform
+sysinfo     varchar(2500),            -- text blob for output of sysinfo
+runtime     float,                    -- wallclock sec to complete fortran code
+signal      varchar(80),              -- signal file (path/filename)
+theta       float,                    -- zero, order phase correction
+nmr_methd   varchar(10),             -- FDM, RRT or DFT
+Nsig        int,                      -- signal length to be used
+wmino       int,                      -- window size min value
+wmaxo       int,                      -- window size max value
+par         varchar(80),              -- linelist output file
+threshhold  float,                    -- threshhold for par above
+ReSp        varchar(80),              -- spectra output files
+ImSp        varchar(80),              -- spectra output files
+AbsSp       varchar(80),              -- spectra output files
+rho         float,                    -- basis density
+Nb0         float,                    -- basis size
+Nbc         float,                    -- coarse basis
+Nsp         int,                      -- plotting pnts
+Gamm        float,                    -- smoothing (5d-2)
+cheat       float,                    -- used in FDM, see discriptions.
+cheatmore   boolean,                  -- used in FDM, see discriptions.
+ros         float                     -- RRT regularization parameter (1d-8)
+);
+--
+initialize this 1-table database on a server running a recent version of postgresql by:
+
+----------------------------------------------------------
+createdb  shaka1d
+# then
+psql -U hjm shaka1d < shaka_all_data.sql
+----------------------------------------------------------
+
+Notes about database.  What to store?
+
+- inititating cmdline
+- machine type, ipnumber, hostname, OS, /proc/cpuinfo, ram, etc
+- time the run took, including output of /usr/bin/time?
+- all params passed to fortan code
+- param file contents
+- user
+- date
+-
+import os
+os.uname() # works under osx and linux
+('Darwin', 'cg1.calit2.uci.edu', '8.11.0', 'Darwin Kernel Version 8.11.0: Wed Oct 10 18:26:00 PDT 2007; root:xnu-792.24.17~1/RELEASE_PPC', 'Power Macintosh')
+
+os.getenv("USER")
+hjm
+
+-detect Linux
+   lshw --short
+--extract--
+468 $ lshw -short
+H/W path               Device      Class       Description
+==========================================================
+                                   system      8743CTO
+/0                                 bus         8743CTO
+/0/0                               memory      144KB BIOS
+/0/6                               processor   Intel(R) Core(TM)2 CPU         T5500  @ 1.66GHz
+/0/6/a                             memory      64KB L1 cache
+/0/6/c                             memory      2MB L2 cache
+/0/6/1.1                           processor   Logical CPU
+/0/6/1.2                           processor   Logical CPU
+/0/b                               memory      64KB L1 cache
+/0/29                              memory      4GB System Memory
+--/extract--
+
+- detect MacOSX
+   system_profiler -detailLevel mini SPHardwareDataType SPSoftwareDataType
+
+--extract--
+$ system_profiler -detailLevel mini SPHardwareDataType SPSoftwareDataType
+Hardware:
+
+    Hardware Overview:
+
+      Machine Name: Power Mac G5 Quad
+      Machine Model: PowerMac11,2
+      CPU Type: PowerPC G5 (1.1)
+      Number Of CPUs: 4
+      CPU Speed: 2.5 GHz
+      L2 Cache (per CPU): 1 MB
+      Memory: 6 GB
+      Bus Speed: 1.25 GHz
+      Boot ROM Version: 5.2.7f1i
+
+Software:
+
+    System Software Overview:
+
+      System Version: Mac OS X 10.4.11 (8S165)
+      Kernel Version: Darwin 8.11.0
+--/extract--
+
+   or
+   hostinfo
+
+$ hostinfo
+Mach kernel version:
+         Darwin Kernel Version 8.11.0: Wed Oct 10 18:26:00 PDT 2007; root:xnu-792.24.17~1/RELEASE_PPC
+Kernel configured for up to 4 processors.
+4 processors are physically available.
+Processor type: ppc970 (PowerPC 970)
+Processors active: 0 1 2 3
+Primary memory available: 6.00 gigabytes
+Default processor set: 57 tasks, 187 threads, 4 processors
+Load average: 0.67, Mach factor: 3.32
+
+
+How to run the f2py line:
+-------------------------
+
+original compile with g95:
+--------------------------------------------------------------
+   g95 -Wall -pg -o fd_rrt1d *.f -L/usr/lib -lblas -llapack
+--------------------------------------------------------------
+
+execute program with:
+--------------------------------------------------------------------------
+   ./fd_rrt1d < in_fdm   # or whatever the original config file was named
+--------------------------------------------------------------------------
+
+To compile with g95
+------------------------------------------------------------------------------
+f2py --opt="-O3" -c -m fd_rrt1d --fcompiler=g95 --debug --link-lapack_opt *.f
+------------------------------------------------------------------------------
+
+To compile with gfortran (aka gnu95) for better compatibility with OSX..?
+on linux, have symlinked gfortran to gnu95 and it seems to work, but calls g77 in
+at least some cases.
+------------------------------------------------------------------------------
+f2py --opt="-O3" -c -m fd_rrt1d --fcompiler=gnu95 --debug --link-lapack_opt *.f
+------------------------------------------------------------------------------
+
+
+Testing compiler optimization flags with g95
+--------------------------------------------
+
+time ./fd_rrt1d < in_fdm_mw (fortran, with -pg flag)
+real    1m27.371s
+user    1m22.389s
+sys     0m0.136s
+
+with the -O3 flag instead of the -pg, get:
+real    0m55.289s
+user    0m51.971s
+sys     0m0.132s
+
+
+timing runs done 4.28.08
+Time for gnu95 vs g95 (same flags as for the g95 -O3 flag)
+---------------------------------------------------
+time ./1d.py (all options taken from default params)
+
+gnu95
+~~~~~
+real    1m33.508s
+user    1m31.866s
+sys     0m0.264s
+
+g95
+~~~
+real    1m54.671s
+user    1m53.231s
+sys     0m0.288s
+
+[looks like gnu95 is at least as fast as g95! - great!]
+
+
+now, will it translate to OSX?
+using:
+Python 2.5.2 (r252:60911, Mar 25 2008, 14:14:22)
+
+using the gfortran binary from:
+  http://r.research.att.com/gfortran-4.2.1.dmg
+
+previously, with g95
+f2py --opt="-O3" -c -m fd_rrt1d --fcompiler=g95  --link-lapack_opt *.f
+
+f2py --opt="-O3" -c -m fd_rrt1d --fcompiler=gfortran --debug --link-lapack_opt *.f
+this gave a bunch of errors ending with:
+
+Too many vlaues to unpack.  '--debug' was the problem!  Without it, it seems to compile.
+Some difficulties in getting the pyqt4 to install on OSX, so commented out the qt4 stuff to run it.
+It does run, but slower than on linux by a fair amount:
+real    2m22.961s - 143s vs ~93s on my laptop. ~1.5 times faster for some reason.
+user    2m16.968s
+sys     0m2.454s
+
+
+Differences between python-wrapped and straight fortran
+-------------------------------------------------------
+
+time ./1d.py --paramfile=fd_rrt1d_mw.config (for same parameters as above
+real    0m55.479s
+user    0m51.623s
+sys     0m0.180s
+
+with the '--O3' flag passed to the g95 compiler to compile the python module,
+the time for the corresponding run was essentially the same:
+
+real    0m55.565s
+user    0m51.359s
+sys     0m0.192s
+
+
+for the fort.11 output file, there are diffs in the very last digit (14th decimal place)
+
+for the fdm file (vs the py_results/ReSp_spectra.data there are differences
+in the last 2 digits of the 2nd column (typical results are:
+0.4876E-02 vs 0.4888E-02
+
+
+Original README distributed with the tarball.
+
+
+----------
+----------
+fd_rrt1d.f  : 1D source code that implements DFT/FDM/RRT
+Umatrix1D.f : 1D source file that contains several U matrix construction
+              subroutines that are used in fd_rrt1d.f
+CQZ.f       : CQZ generalized eigenvalue solver, used by fd_rrt1d.f
+----------
+----------
+2p-no-noise.txt : data file / contains two signal / Peak position@47Hz and 52Hz / Line Width 0.05
+
+in_fdm : input file / set up parameters to use FDM to process the signal
+
+par : paramter files produced by FDM using input: in_fdm
+
+2p-no-noise.gif : GIF file of the spectra
+----------
+----------

@@ -1,0 +1,185 @@
+
+
+
+               ALL RIGHTS RESERVED!
+cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+  program FDM_RRT_1D_FinalVersion_CJH
+cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+1. NOTE:    USE OR DISTRIBUTE WITH PERMISSION ONLY.
+
+2. NAME:    fd_rrt1d.f
+
+3. AUTHORS: Jianhan Chen (jianhanc@uci.edu)
+            V. A. Mandelshtam (mandelsh@uci.edu)
+
+4. DATE:    10-10-2001
+
+5. PURPOSE: 1D FDM/RRT/DFT
+
+         FDM = Filter Diagonalization Method
+         RRT = Regularized Resolvent Transform
+         DFT = Discrete Fourier Transform
+
+6. GENERAL DESCRIPTION:
+
+ The program is based on the FDM and RRT algorithms for high resolution
+ spectral analysis of time domain signals. See references for details.
+ Given a signal c(n) = C(t0+tau*n) n=0, 1, ..., Nsig, calculate the
+ line list {w_k, d_k} and/or the complex spectrum F(w) by fitting c(n)
+ to the Auto-Regressive (AR) model,
+
+            c(n) = sum_k d_k exp(-i n w_k)        (1)
+
+ where, w_k is the complex frequency (line position & width)
+       d_k is the complex amplitude 30482(phase & intregral)
+
+ 1) in FDM, the complex spectrum is computed using the formula,
+
+            F(w) = sum_k d_k/(w-w_k+i*Gamm)       (2)
+
+    in RRT, it is estimated as,
+
+            F(w) ~ Cv 1/R(w) Cv'                    (3)
+
+ 2). QZ-algorithm is applied to solve the generalized eigenvalue
+ problem. ZGESV routine from LAPACK is used to invert matrix R(w).
+
+7. INPUTS:
+
+ IT IS IMPORTANT THAT YOU UNDERSTAND SOME BASIC IDEAS OF FDM/RRT
+ IN ORDER TO UNDERSTAND THE MEANING OF SOME INPUTS SUCH AS BASIS
+ SIZE, BASIS DENSITY. IN SUMMARY, FDM/RRT PROCESS THE TIME SIGNAL
+ BY DIVIDING THE WHOLE NYQUIST RANGE INTO ONE OR SEVERAL LOCAL
+ WINDOWS IN THE FREQUENCY DOMAIN.
+
+ signal: input data file with appropriate first line. The data
+         file is assumed to contain an ASCII formatted list of
+         c(n\tau). The first line must be as following:
+
+          dim { NSigmax tau }_[1,..,dim] {idat}_[1,...,dim]
+
+         where dim    : the dimension of the signal (dim=1, 2, ...)
+               Nsigmax: the maximum signal length
+               tau    : time step (acquistion inteval)
+               idat   : data format along each dimension
+          e.g/ 1D example: 1 1024 0.001 1
+               2D example: 2 2024 0.001 128 0.0001 1 1
+
+         Note: 'idat' implies the data tormat. In 1D, it is defined
+         as following:
+                idat>0 read real signal, idat<0 read complex signal
+                |idat| = 1 read c_n
+                |idat| = 2 read t_n,c_n
+
+ t0    : 1st order (i.e., linear) phase correction (in seconds)
+         NOTE: t0 is not used in this code.
+ theta : zero order (overall) phase correction
+ method: method used to compute the spectra: FDM, RRT, or DFT
+ Nsig  : number of data points to be used in computing the spectra.
+         It will be automatically reduced to Nsigmax (maximum length)
+         if specified Nsig is greater than Nsigmax.
+ wmino : (see wmaxo)
+ wmaxo : specify the frequency range of the spectra to be computed.
+         It might be adjusted to fit harmonically with the basis size
+         specified (see Nb0, rho) and to fit in the Nyquist Range.
+
+ threshhold: see par below.
+ par   : file where the linelist will be written (FDM only).
+         Only those with |d(k)| > threshhold will be output.
+ ReSp  : file where Re[F(w)] will be written
+ ImSp  : file where Im[F(w)] will be written
+ AbsSp : file where Abs[F(w)] will be written
+         NOTE: if file name is specified as 'none' or 'None', no
+               corresponding output will be written.
+
+ rho   : basis density (default = 1.1). rho > 1.0 means putting
+         more basis functions than default. For example, rho=1.1
+         means putting 10% more basis functions then default.
+         rho should not be less than 1.0. rho = 1.5 should be
+         considered as the maximum. For typical data, rho = 1.1-1.2
+         will usually work the best. if rho < 0, default is used.
+ Nb0   : number of narrow band Fourier basis functions used per
+         window (see references). Typical value is about 50-300.
+         Large Nb0 means bigger spectral range per window. The result
+         might be more stable but the calculation will be slower for
+         larger Nb0. Except for very long signal (say, Nsig > 10,000),
+         Nb0 = 150 will be a good choice.
+ Nbc   : number of broad band Fourier basis functions (coarse basis).
+         See second reference for more details. Nbc <= 0 means no
+         coarse basis. Adding coarse basis (Nbc>0) will usually give
+         stabler results and more accurate linelist, especially when
+         the signal is noisy or contains non-localized features such
+         as broad lines, backgrounds. Typical Nbc = 10 ~ 50. A good
+         choice could be Nbc = 20.
+
+ Nsp   : number of points used in plotting the spectra. Defines the
+         digital resolution of output spectra.
+ Gamm  : smoothing parameter. Defines the smallest possible linewidth.
+         Default Gamm = 0.2 * 1/(N*tau). FDM/RRT might give some very
+         narrow lines (spikes) due to noise. A non-zero Gamm will
+         improve the looking of resulted spectra. if Gamm < 0, default
+         will be used.
+ cheat : multiply all widths by cheat (FDM only).
+         NOTE: be very careful to use cheat < 1.0. It might lead to
+               very misleading results. Use cheat=1.0 only.
+ cheatmore: if is .true. F(w) is computed with Im d_k (FDM only).
+         NOTE: be very careful again. Default: cheatmore = .false.
+
+ ros   : regularization parameter (RRT only). If ros < = 0, no
+         regularization in RRT. See 3rd reference for more details.
+         In general, bigger ros means more 'regularization', and will
+         lead to more stable result but will lower resolution.
+         Qualitively, ros is related to the amount of noise present
+         in the signal. Noisy data requires bigger regularization.
+         For typical NMR signals with fine S/N (say, 500M magnet,
+         1 mM sample, normal probe, 4-16 scans), ros = 1d-6 should
+         a good guess. If you see artifacts (very easy to tell if
+         you know what a typical NMR peak will look like), increase
+         ros (say, double the value) and run again. If the spectrum
+         look very clean but the resolution is very poor, it may
+         indicate too big regularization. Decrease ros and run again.
+         NOTE: Choosing an optimal value for ros is a try-and-error
+               game. Typically, there will be a flat regime where
+               the spectra remains similar even changing ros by order
+               of a magnitude. Try following:
+
+                         too many artifacts
+             ros=1d-6---------------  ros = ros*10 = 1d-5 --> cont.
+                       | clean, but low res.
+                       -------------  ros = ros/10 = 1d-7 --> cont.
+                       | GREAT!
+                       --------- done!
+
+ NB: note that the way the parameter format has been changed for
+     the Python version.  See the file 'fd_rrt1d.config' for the
+	 new format.
+
+ *** SAMPLE INPUT FILE: TO PROCESS A SIGNAL STORED IN 'signal.txt'
+
+  'signal.txt'                            /signal
+  1.57                            /theta
+  1                                   /ispec
+  1000                                    /Nsig
+  -10 10                          /wmin wmax
+  'par'                               /parameters file
+  'ft','none','none'              /ReSp,ImSp,AbsSp files
+  1., 200, -20                            /rho, Nb0, Nbc
+  3000, 1d-2              /Nsp, Gamm
+  1 F                                 /cheat, cheatmore
+  5d-7                                /ros
+
+8. OUTPUTS: can be found in the spectra and parameter files specified
+   in the input file. When multi-scale is used, the position of basis
+   functions can be found in file 'fort.11'.
+
+9. REFERENCES
+
+ FDM/RRT:
+  H. Hu et. al., J. Magn. Reson. 134, 76-87 (1998).
+  J. Chen and V. A. Mandelshtam, J. Chem. Phys. 112, 4429-4437 (2000).
+  J. Chen, et.al., J. Magn. Reson. 147, 129-137 (2000).
+  V. A. Mandelshtam, Prog. Nuc. Magn. Reson. Spect. 38, 159-196 (2001).
+ QZ: http://www.netlib.org/toms/535
+ ZGESV/LAPACK: http://www.netlib.org/lapack/index.html
+
+Questions and comments should be directed to V. A. Mandelshtam.

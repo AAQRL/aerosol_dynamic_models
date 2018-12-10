@@ -1,0 +1,34 @@
+1. gfortran is used as compiler
+
+2. -fno-align-commons is used for avoiding compiling warnings like below:
+    (1) Warning: Padding of 4 bytes required before 'conv2' in COMMON 'b1' at (1); reorder elements or use -fno-align-commons
+    (2) Warning: COMMON 'tmphist' at (1) requires 4 bytes of padding at start; reorder elements or use -fno-align-commons
+
+    Detailed error log can be found in error_make_compile.log
+
+3. To avoid compiling error like:
+    Error: Expected a right parenthesis in expression at (1)
+
+    (1) Change line 1131 in discsecpb.for
+       WRITE(3,112)(VG(1,I)*XNN2/TTVOL2,XN(I)*TTVOL2/XNN2**2)
+    into:
+       WRITE(3,112)VG(1,I)*XNN2/TTVOL2,XN(I)*TTVOL2/XNN2**2
+
+    (2) Change line 1134 in discsecpb.for
+       WRITE(3,112)(VGS(I-NDISCT)*XNN2/TTVOL2,XN(I)*TTVOL2/XNN2**2)
+    into:
+       WRITE(3,112)VGS(I-NDISCT)*XNN2/TTVOL2,XN(I)*TTVOL2/XNN2**2
+
+    Detailed error log can be found in error_make_compile.log
+    
+4. To avoid runtime error like:
+    At line 312 of file discsecpb.for (unit = 1, file = 'SYSOPH.DAT')
+    Fortran runtime error: End of file
+   
+   You can do either of:
+    (1) USE editors like nano or vi/vim to edit the file! First, delete the final line of SYSOPH.DAT COMPLETELY ! Manually retype the final line character by character.
+    (2) USE vim, :set ff=unix, and save the file. Reference: https://kb.iu.edu/d/acux
+
+    This error is caused by different end-of-file (EOF) handling mechanisms of Windows and Linux/Unix systems. Some invisible characters in the SYSOPH.DAT from Windows system caused the DSM program reaching the EOF character before reading up the final line. You have to delete those shadow characters and retype the line in Linux environment for DSM to work properly. A reference can be found at http://courses.washington.edu/css342/zander/Notes/eof.html
+
+    Detailed error log can be found in error_runtime.log

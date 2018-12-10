@@ -1,0 +1,27 @@
+gfortran  -c -o obj/discsecpb.mod discsecpb.for 
+discsecpb.for:81.17:
+
+      COMMON /B1/ CONVV,CONV3,C13,CONV2                                 
+                 1
+Warning: Padding of 4 bytes required before 'conv2' in COMMON 'b1' at (1); reorder elements or use -fno-align-commons
+discsecpb.for:77.22:
+
+      COMMON /CALCON1/NDISC,NDISCT,NDISC1,NDISCA,M,NSEC,XNCAL,NCAL1,NCAL
+                      1
+Warning: COMMON 'calcon1' at (1) requires 4 bytes of padding at start; reorder elements or use -fno-align-commons
+discsecpb.for:577.17:
+
+      COMMON /B1/ CONVV,CONV3,C13,CONV2                                 
+                 1
+Warning: Padding of 4 bytes required before 'conv2' in COMMON 'b1' at (1); reorder elements or use -fno-align-commons
+discsecpb.for:580.22:
+
+      COMMON /CALCON1/NDISC,NDISCT,NDISC1,NDISCA,M,NSEC,XNCAL,NCAL1,NCAL
+                      1
+Warning: COMMON 'calcon1' at (1) requires 4 bytes of padding at start; reorder elements or use -fno-align-commons
+discsecpb.for:1134.38:
+
+      WRITE(3,112)(VG(1,I)*XNN2/TTVOL2,XN(I)*TTVOL2/XNN2**2)            
+                                      1
+Error: Expected a right parenthesis in expression at (1)
+make: *** [obj/discsecpb.mod] Error 1

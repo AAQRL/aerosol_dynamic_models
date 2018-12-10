@@ -1,0 +1,50 @@
+100  					!The total number of discrete size, ndisc(1), of species 1
+71.85  				!The aerosol species molecular weight (g/mol), xmw(1), of species 1
+5.7  					!The aerosol species density (g/cm3), rho(1), of species 1
+2.11248d10  	!Aerosol vapor formation rate constant (cm3/mol/s), xk1(1), of species 1
+1.88376d11  	!The dimer formation rate Constant, xk2(1), of species 1
+0.0d0  				!Initial precursor concentration (mol/cc), CONCPRE(1), of species 1 !7.65d-9
+0.0d0			  	!Saturation concentration (atm), PSAT0(1), of species 1
+630.0  				!Surface tension (dyne/cm), sigma(1), of species 1
+1  						!The # of discrete sizes of existing particles, NEXIDIS(1), of species 1
+1 1.0d11  		!# of order in the disc; Aerosol and vapor concentration(#/cc), of every existing disc for species 1
+0  						!Index for complete condensation (0-No barrier; 1-Kelvin effect), of species 1
+0  						!Index for coagulation of the monomer (0-Monomer coagulation; 1-Vapor condensation), of species 1, NCOND1(II)
+1  						!The total number of discrete size, ndisc(2), of species 2
+143.7  				!The aerosol species molecular weight (g/mol), xmw(2), of species 2
+5.7  					!The aerosol species density (g/cm3), rho(2), of species 2
+6.31158d10  	!Aerosol vapor formation rate constant (cm3/mol/s), xk1(2), of species 2
+9.749575d11  	!The dimer formation rate Constant, xk2(2), of species 2
+0.0d0  				!Initial precursor concentration (mol/cc), CONCPRE(2), of species 2
+0.224244d-20  !Saturation concentration (atm), PSAT0(2), of species 2
+307.0  				!Surface tension (dyne/cm), sigma(2), of species 2
+1  						!The # of discrete sizes of existing particles, NEXIDIS(2), of species 2
+1 0.0d0  			!# of order in the disc; Aerosol and vapor concentration(#/cc), of every existing disc for species 2
+0  						!Index for complete condensation (0-No barrier; 1-Kelvin effect), of species 2
+1  						!Index for coagulation of the monomer (0-Monomer coagulation; 1-Vapor condensation), of species 2
+1  						!The # of sections of existing particles, NEXISEC
+1 0.0d0  			!# of order in the scetions; Aerosol and vapor concentration(#/cc), of every existing section
+1.08  				!The size increase factor, SIZEFAC
+50.0  				!The upper bound of the largest section (A), XMAXSIZE
+2200.0  			!The initial temperature (K), TEMP0
+0.0		  			!Initial flow velocity (cm/s), FLVEL0
+3.4126d-7  		!Initial O2 concentration (mol/cc), CO2
+3
+0.5   	  			!Time for the stage 1 (s)
+1000  			!Calculation steps for the stage 1
+2.5     				!Time for the stage 2 (s)
+2500  				!Calculation steps for the stage 2
+0.5
+100
+100  					!The interval to ouput results into OUTPFL.DAT, (steps)
+50  					!The interval to ouput results into CONCF.DAT, (steps)  
+30  					!Number of differentials for the coagulation coefficient, XNCAL
+4  						!The number of points used in calc quad iteration, when GLEGQ: 2 <=N  <=20
+0  						!Conserving index, eta
+1.0  					!The sticking factor(or the accommodation factor), alpha
+0  						!Flag for nucleation (0-no,1-by stable monomer coagulation, 2-given kinetic rate), NFNUCL
+0  						!Flag for condensation (0-no,1-yes), NFCOND
+1  						!Flag for coagulation (0-no,1-yes), NFCOAG
+0  						!Index for constant bulk vapor concentration for condensation (0-vapor consumption; 1-constant concentration), NCONSCND
+concf.dat  		!CONCENTRATION & M2 OUTPUT FILENAME
+output.dat  	!AEROSOL SIZE DISTRIBUTION DATA FILE
