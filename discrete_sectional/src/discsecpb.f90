@@ -60,12 +60,10 @@ program discsecpb
     use globals
 
     ! external functions and subroutines
-    !use funcs
     use aux_data_funcs
     use calbeta_mod
     use ot_mod
     use rk45_init0
-    !use dtwodq_mod
 
     implicit none
 
