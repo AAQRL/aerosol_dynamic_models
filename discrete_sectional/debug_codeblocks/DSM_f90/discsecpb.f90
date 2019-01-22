@@ -348,7 +348,7 @@ program discsecpb
             do km = 1,2
                 XK2RATIO(km) = XK2TMP(km)/XK2(km)
                 XR1(km) = XK1(km)*AVO*VGETA(km,1) !*CO2
-                if (NCOND(II) /= 0) then 
+                if (NCOND(km) /= 0) then 
                     PRATIO = PSAT(km)/PSAT0(km)
                     do ki = 1,NDISC(km)
                         XNPD(km,ki) = XNPD0(km,ki)*PRATIO
