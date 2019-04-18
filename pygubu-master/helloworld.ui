@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='utf-8'?>
+<interface>
+  <object class="tk.Frame" id="mainwindow">
+    <property name="height">200</property>
+    <property name="width">200</property>
+    <layout>
+      <property name="column">0</property>
+      <property name="propagate">True</property>
+      <property name="row">0</property>
+    </layout>
+    <child>
+      <object class="tk.Label" id="Label_1">
+        <property name="font">{courier} 20 {bold}</property>
+        <property name="padx">50</property>
+        <property name="pady">80</property>
+        <property name="text" translatable="yes">Hello World !</property>
+        <layout>
+          <property name="column">0</property>
+          <property name="propagate">True</property>
+          <property name="row">0</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="tk.Button" id="quit_button">
+        <property name="command">on_quit_button_click</property>
+        <property name="padx">0</property>
+        <property name="pady">0</property>
+        <property name="repeatinterval">400</property>
+        <property name="text" translatable="yes">Quit</property>
+        <layout>
+          <property name="column">0</property>
+          <property name="propagate">True</property>
+          <property name="row">1</property>
+          <property name="sticky">se</property>
+        </layout>
+      </object>
+    </child>
+  </object>
+</interface>

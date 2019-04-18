@@ -1,0 +1,6 @@
+name: aero_gui
+dependencies:
+- python=3.5
+- matplotlib=3.0.0
+- pip:
+        - pygubu

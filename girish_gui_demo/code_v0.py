@@ -1,6 +1,6 @@
 # Written by Girish Sharma under the instruction of Dr. Pratim Biswas in the Washington University in St. Louis 
 # in March, 2016. 
-from Tkinter import *
+from tkinter import *
 import math as ma # maths operations
 import matplotlib.pyplot as plt # plotting
 import numpy as np # for arrays
@@ -483,13 +483,13 @@ def main(initial):
 
     # print the solution in dimensional form 
     with open('Moment_ode', 'w') as f:
-        print >> f, '[t(in s)]', '[M0(#/m3)]', '[M1(m3/m3)]', '[M2(m6/m3)]', '[S(unitless)]'
+        print('[t(in s)]', '[M0(#/m3)]', '[M1(m3/m3)]', '[M2(m6/m3)]', '[S(unitless)]', file=f)
         for i in range(0,k):
             M0 = N_t[i]*n_d
             M1 = V_t[i]*n_d*v1
             M2 = V2_t[i]*n_d*v1*v1
             S  = S_t[i]
-            print >> f, tau*t[i], M0, M1, M2, S
+            print(tau*t[i], M0, M1, M2, S, file=f)
             
     # create vectors to save the size distribution data
     Nc = np.zeros((num_steps, 1))
@@ -499,7 +499,7 @@ def main(initial):
     # print the size distribution
     with open('Size_distribution', 'w') as f2:
         # Print & save the solution.
-        print >> f2, '[time(min)]',' [Number Conc ( /cm3)]', '[Geomteric mean diameter(nm)]', '[standard deviation]'
+        print('[time(min)]',' [Number Conc ( /cm3)]', '[Geomteric mean diameter(nm)]', '[standard deviation]', file=f2)
         for i in range(0,k):
             Nc[i] = n_d * N_t[i]* 1e-6
             # if else to avoid division by zero
@@ -533,15 +533,15 @@ def main(initial):
                 sigmag[i] = 1.0
                 W_t[i] = 0.0
                 
-            print >> f2, t[i]*tau/60, Nc[i], dpmg[i], sigmag[i]
+            print(t[i]*tau/60, Nc[i], dpmg[i], sigmag[i], file=f2)
             # if number concentration is less than 1e2 #/m3, put it equal to zero in plots
             if N_t[i]*n_d <= 1e2: 
                 N_t[i] = 1e2/n_d
                 
     with open('check', 'w') as f:
-        print >> f, sigma_g_zero, v_g_zero, num_zero, N_t_zero, n_d, pop
-        print >> f, moment(num_zero,v_g_zero,sigma_g_zero,1) , moment(num_zero,v_g_zero,sigma_g_zero,2)
-        print >> f, V_t[0], V_t[0] * (v1*n_d), (V_t[0]/N_t[0])**(1.0/3) * 2.0 * r1            
+        print(sigma_g_zero, v_g_zero, num_zero, N_t_zero, n_d, pop, file=f)
+        print(moment(num_zero,v_g_zero,sigma_g_zero,1) , moment(num_zero,v_g_zero,sigma_g_zero,2), file=f)
+        print(V_t[0], V_t[0] * (v1*n_d), (V_t[0]/N_t[0])**(1.0/3) * 2.0 * r1, file=f)
     
     # import data from Prastinis paper for comparison
 #     N = 393
@@ -585,7 +585,7 @@ def main(initial):
 #         dp_t_paper[i] = float(line[1])
 #         i = i+1    
 
-    print ns*tau*r_rate
+    print(ns*tau*r_rate)
 
 
 

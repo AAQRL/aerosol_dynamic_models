@@ -1,0 +1,2700 @@
+<?xml version='1.0' encoding='utf-8'?>
+<interface>
+  <object class="tk.Menu" id="mainmenu">
+    <property name="tearoff">false</property>
+    <child>
+      <object class="tk.Menuitem.Submenu" id="mfile">
+        <property name="label" translatable="yes">File</property>
+        <property name="tearoff">false</property>
+        <child>
+          <object class="tk.Menuitem.Command" id="mfile_open">
+            <property name="command">on_mfile_item_clicked</property>
+            <property name="command_id_arg">true</property>
+            <property name="label" translatable="yes">Open</property>
+          </object>
+        </child>
+        <child>
+          <object class="tk.Menuitem.Separator" id="Separator_1" />
+        </child>
+        <child>
+          <object class="tk.Menuitem.Command" id="mfile_quit">
+            <property name="command">on_mfile_item_clicked</property>
+            <property name="command_id_arg">true</property>
+            <property name="label" translatable="yes">Quit</property>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="tk.Menuitem.Submenu" id="medit">
+        <property name="label" translatable="yes">Edit</property>
+        <property name="tearoff">false</property>
+      </object>
+    </child>
+    <child>
+      <object class="tk.Menuitem.Submenu" id="mhelp">
+        <property name="label" translatable="yes">Help</property>
+        <property name="tearoff">false</property>
+        <child>
+          <object class="tk.Menuitem.Command" id="mhelp_about">
+            <property name="command">on_about_clicked</property>
+            <property name="command_id_arg">false</property>
+            <property name="label" translatable="yes">About</property>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="tk.Toplevel" id="mainwindow">
+    <property name="height">600</property>
+    <property name="resizable">both</property>
+    <property name="title" translatable="yes">Myapp</property>
+    <property name="width">880</property>
+    <child>
+      <object class="ttk.Frame" id="mw_fcontainer">
+        <property name="padding">0</property>
+        <layout>
+          <property name="column">0</property>
+          <property name="propagate">True</property>
+          <property name="row">0</property>
+          <property name="sticky">nsew</property>
+          <columns>
+            <column id="0">
+              <property name="weight">1</property>
+            </column>
+          </columns>
+          <rows>
+            <row id="1">
+              <property name="weight">1</property>
+            </row>
+          </rows>
+        </layout>
+        <child>
+          <object class="ttk.Frame" id="mw_fbottom">
+            <property name="borderwidth">1</property>
+            <property name="relief">ridge</property>
+            <layout>
+              <property name="column">0</property>
+              <property name="propagate">True</property>
+              <property name="row">1</property>
+              <property name="sticky">ew</property>
+            </layout>
+            <child>
+              <object class="ttk.Label" id="label_footnote">
+                <property name="text" translatable="yes">Aerosol Dynamics Models</property>
+                <layout>
+                  <property name="column">0</property>
+                  <property name="propagate">True</property>
+                  <property name="row">0</property>
+                  <property name="sticky">ew</property>
+                </layout>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Frame" id="Frame_1">
+            <layout>
+              <property name="column">0</property>
+              <property name="propagate">True</property>
+              <property name="row">0</property>
+            </layout>
+            <child>
+              <object class="ttk.Notebook" id="models">
+                <property name="height">500</property>
+                <property name="width">880</property>
+                <layout>
+                  <property name="column">0</property>
+                  <property name="columnspan">2</property>
+                  <property name="propagate">True</property>
+                  <property name="row">0</property>
+                </layout>
+                <child>
+                  <object class="ttk.Notebook.Tab" id="tab_moment">
+                    <property name="compound">top</property>
+                    <property name="state">normal</property>
+                    <property name="text" translatable="yes">Moment</property>
+                    <property name="underline">0</property>
+                    <child>
+                      <object class="ttk.Frame" id="frame_moment">
+                        <property name="height">600</property>
+                        <property name="width">880</property>
+                        <layout>
+                          <property name="column">0</property>
+                          <property name="propagate">True</property>
+                          <property name="row">0</property>
+                        </layout>
+                        <child>
+                          <object class="ttk.Labelframe" id="frame_input_moment">
+                            <property name="height">300</property>
+                            <property name="text" translatable="yes">Input</property>
+                            <property name="width">880</property>
+                            <layout>
+                              <property name="column">0</property>
+                              <property name="propagate">True</property>
+                              <property name="row">0</property>
+                              <property name="sticky">n</property>
+                            </layout>
+                            <child>
+                              <object class="ttk.Labelframe" id="frame_system_property">
+                                <property name="height">60</property>
+                                <property name="text" translatable="yes">System Property</property>
+                                <property name="width">400</property>
+                                <layout>
+                                  <property name="column">0</property>
+                                  <property name="propagate">False</property>
+                                  <property name="row">0</property>
+                                  <property name="sticky">nw</property>
+                                </layout>
+                                <child>
+                                  <object class="ttk.Label" id="label_temp">
+                                    <property name="text" translatable="yes">Temperature</property>
+                                    <property name="width">30</property>
+                                    <layout>
+                                      <property name="column">0</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">0</property>
+                                      <property name="sticky">w</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Entry" id="entry_temp">
+                                    <layout>
+                                      <property name="column">1</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">0</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_temp_unit">
+                                    <property name="text" translatable="yes">Kelvin</property>
+                                    <layout>
+                                      <property name="column">2</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">0</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_pressure">
+                                    <property name="text" translatable="yes">Pressure</property>
+                                    <property name="width">30</property>
+                                    <layout>
+                                      <property name="column">0</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">1</property>
+                                      <property name="sticky">w</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Entry" id="entry_pressure">
+                                    <layout>
+                                      <property name="column">1</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">1</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_pressure_unit">
+                                    <property name="text" translatable="yes">atm</property>
+                                    <layout>
+                                      <property name="column">2</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">1</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="ttk.Labelframe" id="frame_species_property">
+                                <property name="height">200</property>
+                                <property name="text" translatable="yes">Species Property</property>
+                                <property name="width">440</property>
+                                <layout>
+                                  <property name="column">0</property>
+                                  <property name="propagate">True</property>
+                                  <property name="row">1</property>
+                                  <property name="sticky">nw</property>
+                                </layout>
+                                <child>
+                                  <object class="ttk.Label" id="label_sat_pressure">
+                                    <property name="text" translatable="yes">Saturation Pressure</property>
+                                    <property name="width">30</property>
+                                    <layout>
+                                      <property name="column">0</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">0</property>
+                                      <property name="sticky">w</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Entry" id="entry_sat_pressure">
+                                    <layout>
+                                      <property name="column">1</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">0</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_sat_pressure_unit">
+                                    <property name="text" translatable="yes">Pa</property>
+                                    <layout>
+                                      <property name="column">2</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">0</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_mole_weight">
+                                    <property name="text" translatable="yes">Molecular Weight</property>
+                                    <property name="width">30</property>
+                                    <layout>
+                                      <property name="column">0</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">1</property>
+                                      <property name="sticky">w</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Entry" id="entry_mole_weight">
+                                    <layout>
+                                      <property name="column">1</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">1</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_mole_weight_unit">
+                                    <property name="text" translatable="yes">g/mol</property>
+                                    <layout>
+                                      <property name="column">2</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">1</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_density">
+                                    <property name="text" translatable="yes">Density</property>
+                                    <property name="width">30</property>
+                                    <layout>
+                                      <property name="column">0</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">2</property>
+                                      <property name="sticky">w</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Entry" id="entry_density">
+                                    <layout>
+                                      <property name="column">1</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">2</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_density_unit">
+                                    <property name="text" translatable="yes">kg/m3</property>
+                                    <layout>
+                                      <property name="column">2</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">2</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_surface_tension">
+                                    <property name="text" translatable="yes">Surface Tension</property>
+                                    <property name="width">30</property>
+                                    <layout>
+                                      <property name="column">0</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">3</property>
+                                      <property name="sticky">w</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Entry" id="entry_surface_tension">
+                                    <layout>
+                                      <property name="column">1</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">3</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_surface_tension_unit">
+                                    <property name="text" translatable="yes">dyne/cm</property>
+                                    <layout>
+                                      <property name="column">2</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">3</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="ttk.Labelframe" id="frame_initial_condition">
+                                <property name="height">200</property>
+                                <property name="text" translatable="yes">Initial Conditions</property>
+                                <property name="width">440</property>
+                                <layout>
+                                  <property name="column">1</property>
+                                  <property name="columnspan">2</property>
+                                  <property name="propagate">True</property>
+                                  <property name="row">0</property>
+                                </layout>
+                                <child>
+                                  <object class="ttk.Label" id="label_par_num_con">
+                                    <property name="text" translatable="yes">Particle Number Concentration</property>
+                                    <property name="width">30</property>
+                                    <layout>
+                                      <property name="column">0</property>
+                                      <property name="columnspan">2</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">0</property>
+                                      <property name="sticky">w</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Entry" id="entry_par_num_con">
+                                    <layout>
+                                      <property name="column">2</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">0</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_par_num_con_unit">
+                                    <property name="text" translatable="yes">#/cm3</property>
+                                    <layout>
+                                      <property name="column">3</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">0</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_par_geo_ave_dia">
+                                    <property name="text" translatable="yes">Particle Geometric Average Diameter</property>
+                                    <property name="width">30</property>
+                                    <layout>
+                                      <property name="column">0</property>
+                                      <property name="columnspan">2</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">1</property>
+                                      <property name="sticky">w</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Entry" id="entry_par_geo_ave_dia">
+                                    <layout>
+                                      <property name="column">2</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">1</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_par_geo_ave_dia_unit">
+                                    <property name="text" translatable="yes">nm</property>
+                                    <layout>
+                                      <property name="column">3</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">1</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_geo_std">
+                                    <property name="text" translatable="yes">Geometric Standard Deviation</property>
+                                    <property name="width">30</property>
+                                    <layout>
+                                      <property name="column">0</property>
+                                      <property name="columnspan">2</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">2</property>
+                                      <property name="sticky">w</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Entry" id="entry_geo_std">
+                                    <layout>
+                                      <property name="column">2</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">2</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_geo_std_unit">
+                                    <property name="text" translatable="yes">(#, dimensionless)</property>
+                                    <layout>
+                                      <property name="column">3</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">2</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_sat_ratio">
+                                    <property name="text" translatable="yes">Saturation Ratio</property>
+                                    <property name="width">30</property>
+                                    <layout>
+                                      <property name="column">0</property>
+                                      <property name="columnspan">2</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">3</property>
+                                      <property name="sticky">w</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Entry" id="entry_sat_ratio">
+                                    <layout>
+                                      <property name="column">2</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">3</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_sat_ratio_unit">
+                                    <property name="text" translatable="yes">(#, dimensionless)</property>
+                                    <layout>
+                                      <property name="column">3</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">3</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_sim_time">
+                                    <property name="text" translatable="yes">Simulation Time</property>
+                                    <property name="width">30</property>
+                                    <layout>
+                                      <property name="column">0</property>
+                                      <property name="columnspan">2</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">4</property>
+                                      <property name="sticky">w</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Entry" id="entry_sim_time">
+                                    <layout>
+                                      <property name="column">2</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">4</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_sim_time_unit">
+                                    <property name="text" translatable="yes">sec</property>
+                                    <layout>
+                                      <property name="column">3</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">4</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="ttk.Labelframe" id="frame_phenomena">
+                                <property name="height">100</property>
+                                <property name="text" translatable="yes">Phenomena</property>
+                                <property name="width">300</property>
+                                <layout>
+                                  <property name="column">1</property>
+                                  <property name="columnspan">2</property>
+                                  <property name="propagate">True</property>
+                                  <property name="row">1</property>
+                                  <property name="sticky">w</property>
+                                </layout>
+                                <child>
+                                  <object class="ttk.Checkbutton" id="checkbtn_coag">
+                                    <property name="text" translatable="yes">Coagulation</property>
+                                    <layout>
+                                      <property name="column">0</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">0</property>
+                                      <property name="sticky">w</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Checkbutton" id="checkbtn_cond">
+                                    <property name="text" translatable="yes">Condensation</property>
+                                    <layout>
+                                      <property name="column">0</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">1</property>
+                                      <property name="sticky">w</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Checkbutton" id="checkbtn_nuclea">
+                                    <property name="text" translatable="yes">Nucleation</property>
+                                    <layout>
+                                      <property name="column">0</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">2</property>
+                                      <property name="sticky">w</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Checkbutton" id="checkbtn_react">
+                                    <property name="text" translatable="yes">Reaction</property>
+                                    <layout>
+                                      <property name="column">0</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">3</property>
+                                      <property name="sticky">w</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="ttk.Frame" id="frame_input_btn">
+                                <property name="height">200</property>
+                                <property name="width">200</property>
+                                <layout>
+                                  <property name="column">2</property>
+                                  <property name="columnspan">2</property>
+                                  <property name="propagate">True</property>
+                                  <property name="row">1</property>
+                                  <property name="sticky">se</property>
+                                </layout>
+                                <child>
+                                  <object class="ttk.Button" id="btn_input_file">
+                                    <property name="text" translatable="yes">Read Input from File</property>
+                                    <layout>
+                                      <property name="column">0</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">0</property>
+                                      <property name="sticky">w</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="ttk.Labelframe" id="frame_output_moment">
+                            <property name="height">220</property>
+                            <property name="text" translatable="yes">Output</property>
+                            <property name="width">880</property>
+                            <layout>
+                              <property name="column">0</property>
+                              <property name="propagate">False</property>
+                              <property name="row">1</property>
+                            </layout>
+                            <child>
+                              <object class="pygubu.builder.widgets.scrolledframe" id="scrolledframe_printout">
+                                <property name="height">200</property>
+                                <property name="scrolltype">vertical</property>
+                                <property name="usemousewheel">true</property>
+                                <property name="width">880</property>
+                                <layout>
+                                  <property name="column">0</property>
+                                  <property name="propagate">True</property>
+                                  <property name="row">0</property>
+                                  <property name="rowspan">4</property>
+                                </layout>
+                                <child>
+                                  <object class="tk.Text" id="Text_1">
+                                    <property name="height">200</property>
+                                    <property name="text" translatable="yes">(stdout)</property>
+                                    <property name="width">880</property>
+                                    <layout>
+                                      <property name="column">0</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">0</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="ttk.Button" id="btn_run">
+                                <property name="text" translatable="yes">Run</property>
+                                <layout>
+                                  <property name="column">1</property>
+                                  <property name="propagate">True</property>
+                                  <property name="row">0</property>
+                                </layout>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="ttk.Button" id="btn_output_to_file">
+                                <property name="text" translatable="yes">Select Output File</property>
+                                <layout>
+                                  <property name="column">1</property>
+                                  <property name="propagate">True</property>
+                                  <property name="row">1</property>
+                                </layout>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="ttk.Label" id="label_logo_main">
+                                <property name="image">AAQRL_logo.png</property>
+                                <property name="text" translatable="yes">Logo</property>
+                                <layout>
+                                  <property name="column">2</property>
+                                  <property name="propagate">True</property>
+                                  <property name="row">0</property>
+                                  <property name="rowspan">4</property>
+                                  <property name="sticky">e</property>
+                                </layout>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="ttk.Progressbar" id="Progressbar_2">
+                                <property name="orient">horizontal</property>
+                                <layout>
+                                  <property name="column">1</property>
+                                  <property name="propagate">True</property>
+                                  <property name="row">3</property>
+                                </layout>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="ttk.Label" id="label_progress_bar">
+                                <property name="text" translatable="yes">Running Progress Bar</property>
+                                <layout>
+                                  <property name="column">1</property>
+                                  <property name="propagate">True</property>
+                                  <property name="row">2</property>
+                                </layout>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="ttk.Notebook.Tab" id="tab_modal">
+                    <property name="compound">top</property>
+                    <property name="state">normal</property>
+                    <property name="text" translatable="yes">Modal</property>
+                    <property name="underline">0</property>
+                    <child>
+                      <object class="ttk.Frame" id="frame_modal">
+                        <property name="height">600</property>
+                        <property name="width">880</property>
+                        <layout>
+                          <property name="column">0</property>
+                          <property name="propagate">True</property>
+                          <property name="row">0</property>
+                        </layout>
+                        <child>
+                          <object class="ttk.Labelframe" id="frame_input_modal">
+                            <property name="height">300</property>
+                            <property name="text" translatable="yes">Input</property>
+                            <property name="width">880</property>
+                            <layout>
+                              <property name="column">0</property>
+                              <property name="propagate">True</property>
+                              <property name="row">0</property>
+                              <property name="sticky">n</property>
+                            </layout>
+                            <child>
+                              <object class="ttk.Labelframe" id="frame_system_property_1">
+                                <property name="height">60</property>
+                                <property name="text" translatable="yes">System Property</property>
+                                <property name="width">400</property>
+                                <layout>
+                                  <property name="column">0</property>
+                                  <property name="propagate">False</property>
+                                  <property name="row">0</property>
+                                  <property name="sticky">nw</property>
+                                </layout>
+                                <child>
+                                  <object class="ttk.Label" id="label_temp_1">
+                                    <property name="text" translatable="yes">Temperature</property>
+                                    <property name="width">30</property>
+                                    <layout>
+                                      <property name="column">0</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">0</property>
+                                      <property name="sticky">w</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Entry" id="entry_temp_1">
+                                    <layout>
+                                      <property name="column">1</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">0</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_temp_unit_2">
+                                    <property name="text" translatable="yes">Kelvin</property>
+                                    <layout>
+                                      <property name="column">2</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">0</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_pressure_3">
+                                    <property name="text" translatable="yes">Pressure</property>
+                                    <property name="width">30</property>
+                                    <layout>
+                                      <property name="column">0</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">1</property>
+                                      <property name="sticky">w</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Entry" id="entry_pressure_2">
+                                    <layout>
+                                      <property name="column">1</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">1</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_pressure_unit_4">
+                                    <property name="text" translatable="yes">atm</property>
+                                    <layout>
+                                      <property name="column">2</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">1</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="ttk.Labelframe" id="frame_species_property_2">
+                                <property name="height">200</property>
+                                <property name="text" translatable="yes">Species Property</property>
+                                <property name="width">440</property>
+                                <layout>
+                                  <property name="column">0</property>
+                                  <property name="propagate">True</property>
+                                  <property name="row">1</property>
+                                  <property name="sticky">nw</property>
+                                </layout>
+                                <child>
+                                  <object class="ttk.Label" id="label_sat_pressure_5">
+                                    <property name="text" translatable="yes">Saturation Pressure</property>
+                                    <property name="width">30</property>
+                                    <layout>
+                                      <property name="column">0</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">0</property>
+                                      <property name="sticky">w</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Entry" id="entry_sat_pressure_3">
+                                    <layout>
+                                      <property name="column">1</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">0</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_sat_pressure_unit_6">
+                                    <property name="text" translatable="yes">Pa</property>
+                                    <layout>
+                                      <property name="column">2</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">0</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_mole_weight_7">
+                                    <property name="text" translatable="yes">Molecular Weight</property>
+                                    <property name="width">30</property>
+                                    <layout>
+                                      <property name="column">0</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">1</property>
+                                      <property name="sticky">w</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Entry" id="entry_mole_weight_4">
+                                    <layout>
+                                      <property name="column">1</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">1</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_mole_weight_unit_8">
+                                    <property name="text" translatable="yes">g/mol</property>
+                                    <layout>
+                                      <property name="column">2</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">1</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_density_9">
+                                    <property name="text" translatable="yes">Density</property>
+                                    <property name="width">30</property>
+                                    <layout>
+                                      <property name="column">0</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">2</property>
+                                      <property name="sticky">w</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Entry" id="entry_density_5">
+                                    <layout>
+                                      <property name="column">1</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">2</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_density_unit_10">
+                                    <property name="text" translatable="yes">kg/m3</property>
+                                    <layout>
+                                      <property name="column">2</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">2</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_surface_tension_11">
+                                    <property name="text" translatable="yes">Surface Tension</property>
+                                    <property name="width">30</property>
+                                    <layout>
+                                      <property name="column">0</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">3</property>
+                                      <property name="sticky">w</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Entry" id="entry_surface_tension_6">
+                                    <layout>
+                                      <property name="column">1</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">3</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_surface_tension_unit_12">
+                                    <property name="text" translatable="yes">dyne/cm</property>
+                                    <layout>
+                                      <property name="column">2</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">3</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="ttk.Labelframe" id="frame_initial_condition_3">
+                                <property name="height">200</property>
+                                <property name="text" translatable="yes">Initial Conditions</property>
+                                <property name="width">440</property>
+                                <layout>
+                                  <property name="column">1</property>
+                                  <property name="columnspan">2</property>
+                                  <property name="propagate">True</property>
+                                  <property name="row">0</property>
+                                </layout>
+                                <child>
+                                  <object class="ttk.Label" id="label_par_num_con_13">
+                                    <property name="text" translatable="yes">Particle Number Concentration</property>
+                                    <property name="width">30</property>
+                                    <layout>
+                                      <property name="column">0</property>
+                                      <property name="columnspan">2</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">0</property>
+                                      <property name="sticky">w</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Entry" id="entry_par_num_con_7">
+                                    <layout>
+                                      <property name="column">2</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">0</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_par_num_con_unit_14">
+                                    <property name="text" translatable="yes">#/cm3</property>
+                                    <layout>
+                                      <property name="column">3</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">0</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_par_geo_ave_dia_15">
+                                    <property name="text" translatable="yes">Particle Geometric Average Diameter</property>
+                                    <property name="width">30</property>
+                                    <layout>
+                                      <property name="column">0</property>
+                                      <property name="columnspan">2</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">1</property>
+                                      <property name="sticky">w</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Entry" id="entry_par_geo_ave_dia_8">
+                                    <layout>
+                                      <property name="column">2</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">1</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_par_geo_ave_dia_unit_16">
+                                    <property name="text" translatable="yes">nm</property>
+                                    <layout>
+                                      <property name="column">3</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">1</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_geo_std_17">
+                                    <property name="text" translatable="yes">Geometric Standard Deviation</property>
+                                    <property name="width">30</property>
+                                    <layout>
+                                      <property name="column">0</property>
+                                      <property name="columnspan">2</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">2</property>
+                                      <property name="sticky">w</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Entry" id="entry_geo_std_9">
+                                    <layout>
+                                      <property name="column">2</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">2</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_geo_std_unit_18">
+                                    <property name="text" translatable="yes">(#, dimensionless)</property>
+                                    <layout>
+                                      <property name="column">3</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">2</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_sat_ratio_19">
+                                    <property name="text" translatable="yes">Saturation Ratio</property>
+                                    <property name="width">30</property>
+                                    <layout>
+                                      <property name="column">0</property>
+                                      <property name="columnspan">2</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">3</property>
+                                      <property name="sticky">w</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Entry" id="entry_sat_ratio_10">
+                                    <layout>
+                                      <property name="column">2</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">3</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_sat_ratio_unit_20">
+                                    <property name="text" translatable="yes">(#, dimensionless)</property>
+                                    <layout>
+                                      <property name="column">3</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">3</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_sim_time_21">
+                                    <property name="text" translatable="yes">Simulation Time</property>
+                                    <property name="width">30</property>
+                                    <layout>
+                                      <property name="column">0</property>
+                                      <property name="columnspan">2</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">4</property>
+                                      <property name="sticky">w</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Entry" id="entry_sim_time_11">
+                                    <layout>
+                                      <property name="column">2</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">4</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_sim_time_unit_22">
+                                    <property name="text" translatable="yes">sec</property>
+                                    <layout>
+                                      <property name="column">3</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">4</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="ttk.Labelframe" id="frame_phenomena_4">
+                                <property name="height">100</property>
+                                <property name="text" translatable="yes">Phenomena</property>
+                                <property name="width">300</property>
+                                <layout>
+                                  <property name="column">1</property>
+                                  <property name="columnspan">2</property>
+                                  <property name="propagate">True</property>
+                                  <property name="row">1</property>
+                                  <property name="sticky">w</property>
+                                </layout>
+                                <child>
+                                  <object class="ttk.Checkbutton" id="checkbtn_coag_1">
+                                    <property name="text" translatable="yes">Coagulation</property>
+                                    <layout>
+                                      <property name="column">0</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">0</property>
+                                      <property name="sticky">w</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Checkbutton" id="checkbtn_cond_2">
+                                    <property name="text" translatable="yes">Condensation</property>
+                                    <layout>
+                                      <property name="column">0</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">1</property>
+                                      <property name="sticky">w</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Checkbutton" id="checkbtn_nuclea_3">
+                                    <property name="text" translatable="yes">Nucleation</property>
+                                    <layout>
+                                      <property name="column">0</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">2</property>
+                                      <property name="sticky">w</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Checkbutton" id="checkbtn_react_4">
+                                    <property name="text" translatable="yes">Reaction</property>
+                                    <layout>
+                                      <property name="column">0</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">3</property>
+                                      <property name="sticky">w</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="ttk.Frame" id="frame_input_btn_1">
+                                <property name="height">200</property>
+                                <property name="width">200</property>
+                                <layout>
+                                  <property name="column">2</property>
+                                  <property name="columnspan">2</property>
+                                  <property name="propagate">True</property>
+                                  <property name="row">1</property>
+                                  <property name="sticky">se</property>
+                                </layout>
+                                <child>
+                                  <object class="ttk.Button" id="btn_input_file_1">
+                                    <property name="text" translatable="yes">Read Input from File</property>
+                                    <layout>
+                                      <property name="column">0</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">0</property>
+                                      <property name="sticky">w</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="ttk.Labelframe" id="frame_output_modal">
+                            <property name="height">220</property>
+                            <property name="text" translatable="yes">Output</property>
+                            <property name="width">880</property>
+                            <layout>
+                              <property name="column">0</property>
+                              <property name="propagate">False</property>
+                              <property name="row">1</property>
+                            </layout>
+                            <child>
+                              <object class="pygubu.builder.widgets.scrolledframe" id="scrolledframe_1">
+                                <property name="height">200</property>
+                                <property name="scrolltype">vertical</property>
+                                <property name="usemousewheel">true</property>
+                                <property name="width">880</property>
+                                <layout>
+                                  <property name="column">0</property>
+                                  <property name="propagate">True</property>
+                                  <property name="row">0</property>
+                                  <property name="rowspan">4</property>
+                                </layout>
+                                <child>
+                                  <object class="tk.Text" id="Text_2">
+                                    <property name="height">200</property>
+                                    <property name="text" translatable="yes">(stdout)</property>
+                                    <property name="width">880</property>
+                                    <layout>
+                                      <property name="column">0</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">0</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="ttk.Button" id="btn_run_2">
+                                <property name="text" translatable="yes">Run</property>
+                                <layout>
+                                  <property name="column">1</property>
+                                  <property name="propagate">True</property>
+                                  <property name="row">0</property>
+                                </layout>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="ttk.Button" id="btn_output_to_file_3">
+                                <property name="text" translatable="yes">Select Output File</property>
+                                <layout>
+                                  <property name="column">1</property>
+                                  <property name="propagate">True</property>
+                                  <property name="row">1</property>
+                                </layout>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="ttk.Label" id="label_logo_main_23">
+                                <property name="image">AAQRL_logo.png</property>
+                                <property name="text" translatable="yes">Logo</property>
+                                <layout>
+                                  <property name="column">2</property>
+                                  <property name="propagate">True</property>
+                                  <property name="row">0</property>
+                                  <property name="rowspan">4</property>
+                                  <property name="sticky">e</property>
+                                </layout>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="ttk.Progressbar" id="Progressbar_1">
+                                <property name="orient">horizontal</property>
+                                <layout>
+                                  <property name="column">1</property>
+                                  <property name="propagate">True</property>
+                                  <property name="row">3</property>
+                                </layout>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="ttk.Label" id="label_progress_bar_24">
+                                <property name="text" translatable="yes">Running Progress Bar</property>
+                                <layout>
+                                  <property name="column">1</property>
+                                  <property name="propagate">True</property>
+                                  <property name="row">2</property>
+                                </layout>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="ttk.Notebook.Tab" id="tab_discrete_sectional">
+                    <property name="compound">top</property>
+                    <property name="state">normal</property>
+                    <property name="text" translatable="yes">Discrete-Sectional</property>
+                    <property name="underline">0</property>
+                    <child>
+                      <object class="ttk.Frame" id="frame_discrete_sectional">
+                        <property name="height">600</property>
+                        <property name="width">880</property>
+                        <layout>
+                          <property name="column">0</property>
+                          <property name="propagate">True</property>
+                          <property name="row">0</property>
+                        </layout>
+                        <child>
+                          <object class="ttk.Labelframe" id="frame_input_discrete_sectional">
+                            <property name="height">300</property>
+                            <property name="text" translatable="yes">Input</property>
+                            <property name="width">880</property>
+                            <layout>
+                              <property name="column">0</property>
+                              <property name="propagate">True</property>
+                              <property name="row">0</property>
+                              <property name="sticky">n</property>
+                            </layout>
+                            <child>
+                              <object class="ttk.Labelframe" id="frame_system_property_5">
+                                <property name="height">60</property>
+                                <property name="text" translatable="yes">System Property</property>
+                                <property name="width">400</property>
+                                <layout>
+                                  <property name="column">0</property>
+                                  <property name="propagate">False</property>
+                                  <property name="row">0</property>
+                                  <property name="sticky">nw</property>
+                                </layout>
+                                <child>
+                                  <object class="ttk.Label" id="label_temp_25">
+                                    <property name="text" translatable="yes">Temperature</property>
+                                    <property name="width">30</property>
+                                    <layout>
+                                      <property name="column">0</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">0</property>
+                                      <property name="sticky">w</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Entry" id="entry_temp_12">
+                                    <layout>
+                                      <property name="column">1</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">0</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_temp_unit_26">
+                                    <property name="text" translatable="yes">Kelvin</property>
+                                    <layout>
+                                      <property name="column">2</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">0</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_pressure_27">
+                                    <property name="text" translatable="yes">Pressure</property>
+                                    <property name="width">30</property>
+                                    <layout>
+                                      <property name="column">0</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">1</property>
+                                      <property name="sticky">w</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Entry" id="entry_pressure_13">
+                                    <layout>
+                                      <property name="column">1</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">1</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_pressure_unit_28">
+                                    <property name="text" translatable="yes">atm</property>
+                                    <layout>
+                                      <property name="column">2</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">1</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="ttk.Labelframe" id="frame_species_property_6">
+                                <property name="height">200</property>
+                                <property name="text" translatable="yes">Species Property</property>
+                                <property name="width">440</property>
+                                <layout>
+                                  <property name="column">0</property>
+                                  <property name="propagate">True</property>
+                                  <property name="row">1</property>
+                                  <property name="sticky">nw</property>
+                                </layout>
+                                <child>
+                                  <object class="ttk.Label" id="label_sat_pressure_29">
+                                    <property name="text" translatable="yes">Saturation Pressure</property>
+                                    <property name="width">30</property>
+                                    <layout>
+                                      <property name="column">0</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">0</property>
+                                      <property name="sticky">w</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Entry" id="entry_sat_pressure_14">
+                                    <layout>
+                                      <property name="column">1</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">0</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_sat_pressure_unit_30">
+                                    <property name="text" translatable="yes">Pa</property>
+                                    <layout>
+                                      <property name="column">2</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">0</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_mole_weight_31">
+                                    <property name="text" translatable="yes">Molecular Weight</property>
+                                    <property name="width">30</property>
+                                    <layout>
+                                      <property name="column">0</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">1</property>
+                                      <property name="sticky">w</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Entry" id="entry_mole_weight_15">
+                                    <layout>
+                                      <property name="column">1</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">1</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_mole_weight_unit_32">
+                                    <property name="text" translatable="yes">g/mol</property>
+                                    <layout>
+                                      <property name="column">2</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">1</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_density_33">
+                                    <property name="text" translatable="yes">Density</property>
+                                    <property name="width">30</property>
+                                    <layout>
+                                      <property name="column">0</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">2</property>
+                                      <property name="sticky">w</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Entry" id="entry_density_16">
+                                    <layout>
+                                      <property name="column">1</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">2</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_density_unit_34">
+                                    <property name="text" translatable="yes">kg/m3</property>
+                                    <layout>
+                                      <property name="column">2</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">2</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_surface_tension_35">
+                                    <property name="text" translatable="yes">Surface Tension</property>
+                                    <property name="width">30</property>
+                                    <layout>
+                                      <property name="column">0</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">3</property>
+                                      <property name="sticky">w</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Entry" id="entry_surface_tension_17">
+                                    <layout>
+                                      <property name="column">1</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">3</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_surface_tension_unit_36">
+                                    <property name="text" translatable="yes">dyne/cm</property>
+                                    <layout>
+                                      <property name="column">2</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">3</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="ttk.Labelframe" id="frame_initial_condition_7">
+                                <property name="height">200</property>
+                                <property name="text" translatable="yes">Initial Conditions</property>
+                                <property name="width">440</property>
+                                <layout>
+                                  <property name="column">1</property>
+                                  <property name="columnspan">2</property>
+                                  <property name="propagate">True</property>
+                                  <property name="row">0</property>
+                                </layout>
+                                <child>
+                                  <object class="ttk.Label" id="label_par_num_con_37">
+                                    <property name="text" translatable="yes">Particle Number Concentration</property>
+                                    <property name="width">30</property>
+                                    <layout>
+                                      <property name="column">0</property>
+                                      <property name="columnspan">2</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">0</property>
+                                      <property name="sticky">w</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Entry" id="entry_par_num_con_18">
+                                    <layout>
+                                      <property name="column">2</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">0</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_par_num_con_unit_38">
+                                    <property name="text" translatable="yes">#/cm3</property>
+                                    <layout>
+                                      <property name="column">3</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">0</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_par_geo_ave_dia_39">
+                                    <property name="text" translatable="yes">Particle Geometric Average Diameter</property>
+                                    <property name="width">30</property>
+                                    <layout>
+                                      <property name="column">0</property>
+                                      <property name="columnspan">2</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">1</property>
+                                      <property name="sticky">w</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Entry" id="entry_par_geo_ave_dia_19">
+                                    <layout>
+                                      <property name="column">2</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">1</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_par_geo_ave_dia_unit_40">
+                                    <property name="text" translatable="yes">nm</property>
+                                    <layout>
+                                      <property name="column">3</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">1</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_geo_std_41">
+                                    <property name="text" translatable="yes">Geometric Standard Deviation</property>
+                                    <property name="width">30</property>
+                                    <layout>
+                                      <property name="column">0</property>
+                                      <property name="columnspan">2</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">2</property>
+                                      <property name="sticky">w</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Entry" id="entry_geo_std_20">
+                                    <layout>
+                                      <property name="column">2</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">2</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_geo_std_unit_42">
+                                    <property name="text" translatable="yes">(#, dimensionless)</property>
+                                    <layout>
+                                      <property name="column">3</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">2</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_sat_ratio_43">
+                                    <property name="text" translatable="yes">Saturation Ratio</property>
+                                    <property name="width">30</property>
+                                    <layout>
+                                      <property name="column">0</property>
+                                      <property name="columnspan">2</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">3</property>
+                                      <property name="sticky">w</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Entry" id="entry_sat_ratio_21">
+                                    <layout>
+                                      <property name="column">2</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">3</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_sat_ratio_unit_44">
+                                    <property name="text" translatable="yes">(#, dimensionless)</property>
+                                    <layout>
+                                      <property name="column">3</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">3</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_sim_time_45">
+                                    <property name="text" translatable="yes">Simulation Time</property>
+                                    <property name="width">30</property>
+                                    <layout>
+                                      <property name="column">0</property>
+                                      <property name="columnspan">2</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">4</property>
+                                      <property name="sticky">w</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Entry" id="entry_sim_time_22">
+                                    <layout>
+                                      <property name="column">2</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">4</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_sim_time_unit_46">
+                                    <property name="text" translatable="yes">sec</property>
+                                    <layout>
+                                      <property name="column">3</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">4</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="ttk.Labelframe" id="frame_phenomena_8">
+                                <property name="height">100</property>
+                                <property name="text" translatable="yes">Phenomena</property>
+                                <property name="width">300</property>
+                                <layout>
+                                  <property name="column">1</property>
+                                  <property name="columnspan">2</property>
+                                  <property name="propagate">True</property>
+                                  <property name="row">1</property>
+                                  <property name="sticky">w</property>
+                                </layout>
+                                <child>
+                                  <object class="ttk.Checkbutton" id="checkbtn_coag_5">
+                                    <property name="text" translatable="yes">Coagulation</property>
+                                    <layout>
+                                      <property name="column">0</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">0</property>
+                                      <property name="sticky">w</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Checkbutton" id="checkbtn_cond_6">
+                                    <property name="text" translatable="yes">Condensation</property>
+                                    <layout>
+                                      <property name="column">0</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">1</property>
+                                      <property name="sticky">w</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Checkbutton" id="checkbtn_nuclea_7">
+                                    <property name="text" translatable="yes">Nucleation</property>
+                                    <layout>
+                                      <property name="column">0</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">2</property>
+                                      <property name="sticky">w</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Checkbutton" id="checkbtn_react_8">
+                                    <property name="text" translatable="yes">Reaction</property>
+                                    <layout>
+                                      <property name="column">0</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">3</property>
+                                      <property name="sticky">w</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="ttk.Frame" id="frame_input_btn_2">
+                                <property name="height">200</property>
+                                <property name="width">200</property>
+                                <layout>
+                                  <property name="column">2</property>
+                                  <property name="columnspan">2</property>
+                                  <property name="propagate">True</property>
+                                  <property name="row">1</property>
+                                  <property name="sticky">se</property>
+                                </layout>
+                                <child>
+                                  <object class="ttk.Button" id="btn_input_file_4">
+                                    <property name="text" translatable="yes">Read Input from File</property>
+                                    <layout>
+                                      <property name="column">0</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">0</property>
+                                      <property name="sticky">w</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="ttk.Labelframe" id="frame_output_discrete_sectional">
+                            <property name="height">220</property>
+                            <property name="text" translatable="yes">Output</property>
+                            <property name="width">880</property>
+                            <layout>
+                              <property name="column">0</property>
+                              <property name="propagate">False</property>
+                              <property name="row">1</property>
+                            </layout>
+                            <child>
+                              <object class="pygubu.builder.widgets.scrolledframe" id="scrolledframe_2">
+                                <property name="height">200</property>
+                                <property name="scrolltype">vertical</property>
+                                <property name="usemousewheel">true</property>
+                                <property name="width">880</property>
+                                <layout>
+                                  <property name="column">0</property>
+                                  <property name="propagate">True</property>
+                                  <property name="row">0</property>
+                                  <property name="rowspan">4</property>
+                                </layout>
+                                <child>
+                                  <object class="tk.Text" id="Text_3">
+                                    <property name="height">200</property>
+                                    <property name="text" translatable="yes">(stdout)</property>
+                                    <property name="width">880</property>
+                                    <layout>
+                                      <property name="column">0</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">0</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="ttk.Button" id="btn_run_5">
+                                <property name="text" translatable="yes">Run</property>
+                                <layout>
+                                  <property name="column">1</property>
+                                  <property name="propagate">True</property>
+                                  <property name="row">0</property>
+                                </layout>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="ttk.Button" id="btn_output_to_file_6">
+                                <property name="text" translatable="yes">Select Output File</property>
+                                <layout>
+                                  <property name="column">1</property>
+                                  <property name="propagate">True</property>
+                                  <property name="row">1</property>
+                                </layout>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="ttk.Label" id="label_logo_main_47">
+                                <property name="image">AAQRL_logo.png</property>
+                                <property name="text" translatable="yes">Logo</property>
+                                <layout>
+                                  <property name="column">2</property>
+                                  <property name="propagate">True</property>
+                                  <property name="row">0</property>
+                                  <property name="rowspan">4</property>
+                                  <property name="sticky">e</property>
+                                </layout>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="ttk.Progressbar" id="Progressbar_3">
+                                <property name="orient">horizontal</property>
+                                <layout>
+                                  <property name="column">1</property>
+                                  <property name="propagate">True</property>
+                                  <property name="row">3</property>
+                                </layout>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="ttk.Label" id="label_progress_bar_48">
+                                <property name="text" translatable="yes">Running Progress Bar</property>
+                                <layout>
+                                  <property name="column">1</property>
+                                  <property name="propagate">True</property>
+                                  <property name="row">2</property>
+                                </layout>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="ttk.Notebook.Tab" id="tab_discrete">
+                    <property name="compound">top</property>
+                    <property name="state">normal</property>
+                    <property name="text" translatable="yes">Discrete</property>
+                    <property name="underline">0</property>
+                    <child>
+                      <object class="ttk.Frame" id="frame_discrete">
+                        <property name="height">600</property>
+                        <property name="width">880</property>
+                        <layout>
+                          <property name="column">0</property>
+                          <property name="propagate">True</property>
+                          <property name="row">0</property>
+                        </layout>
+                        <child>
+                          <object class="ttk.Labelframe" id="frame_input_discrete">
+                            <property name="height">300</property>
+                            <property name="text" translatable="yes">Input</property>
+                            <property name="width">880</property>
+                            <layout>
+                              <property name="column">0</property>
+                              <property name="propagate">True</property>
+                              <property name="row">0</property>
+                              <property name="sticky">n</property>
+                            </layout>
+                            <child>
+                              <object class="ttk.Labelframe" id="frame_system_property_9">
+                                <property name="height">60</property>
+                                <property name="text" translatable="yes">System Property</property>
+                                <property name="width">400</property>
+                                <layout>
+                                  <property name="column">0</property>
+                                  <property name="propagate">False</property>
+                                  <property name="row">0</property>
+                                  <property name="sticky">nw</property>
+                                </layout>
+                                <child>
+                                  <object class="ttk.Label" id="label_temp_49">
+                                    <property name="text" translatable="yes">Temperature</property>
+                                    <property name="width">30</property>
+                                    <layout>
+                                      <property name="column">0</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">0</property>
+                                      <property name="sticky">w</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Entry" id="entry_temp_23">
+                                    <layout>
+                                      <property name="column">1</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">0</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_temp_unit_50">
+                                    <property name="text" translatable="yes">Kelvin</property>
+                                    <layout>
+                                      <property name="column">2</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">0</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_pressure_51">
+                                    <property name="text" translatable="yes">Pressure</property>
+                                    <property name="width">30</property>
+                                    <layout>
+                                      <property name="column">0</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">1</property>
+                                      <property name="sticky">w</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Entry" id="entry_pressure_24">
+                                    <layout>
+                                      <property name="column">1</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">1</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_pressure_unit_52">
+                                    <property name="text" translatable="yes">atm</property>
+                                    <layout>
+                                      <property name="column">2</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">1</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="ttk.Labelframe" id="frame_species_property_10">
+                                <property name="height">200</property>
+                                <property name="text" translatable="yes">Species Property</property>
+                                <property name="width">440</property>
+                                <layout>
+                                  <property name="column">0</property>
+                                  <property name="propagate">True</property>
+                                  <property name="row">1</property>
+                                  <property name="sticky">nw</property>
+                                </layout>
+                                <child>
+                                  <object class="ttk.Label" id="label_sat_pressure_53">
+                                    <property name="text" translatable="yes">Saturation Pressure</property>
+                                    <property name="width">30</property>
+                                    <layout>
+                                      <property name="column">0</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">0</property>
+                                      <property name="sticky">w</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Entry" id="entry_sat_pressure_25">
+                                    <layout>
+                                      <property name="column">1</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">0</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_sat_pressure_unit_54">
+                                    <property name="text" translatable="yes">Pa</property>
+                                    <layout>
+                                      <property name="column">2</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">0</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_mole_weight_55">
+                                    <property name="text" translatable="yes">Molecular Weight</property>
+                                    <property name="width">30</property>
+                                    <layout>
+                                      <property name="column">0</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">1</property>
+                                      <property name="sticky">w</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Entry" id="entry_mole_weight_26">
+                                    <layout>
+                                      <property name="column">1</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">1</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_mole_weight_unit_56">
+                                    <property name="text" translatable="yes">g/mol</property>
+                                    <layout>
+                                      <property name="column">2</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">1</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_density_57">
+                                    <property name="text" translatable="yes">Density</property>
+                                    <property name="width">30</property>
+                                    <layout>
+                                      <property name="column">0</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">2</property>
+                                      <property name="sticky">w</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Entry" id="entry_density_27">
+                                    <layout>
+                                      <property name="column">1</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">2</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_density_unit_58">
+                                    <property name="text" translatable="yes">kg/m3</property>
+                                    <layout>
+                                      <property name="column">2</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">2</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_surface_tension_59">
+                                    <property name="text" translatable="yes">Surface Tension</property>
+                                    <property name="width">30</property>
+                                    <layout>
+                                      <property name="column">0</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">3</property>
+                                      <property name="sticky">w</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Entry" id="entry_surface_tension_28">
+                                    <layout>
+                                      <property name="column">1</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">3</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_surface_tension_unit_60">
+                                    <property name="text" translatable="yes">dyne/cm</property>
+                                    <layout>
+                                      <property name="column">2</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">3</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="ttk.Labelframe" id="frame_initial_condition_11">
+                                <property name="height">200</property>
+                                <property name="text" translatable="yes">Initial Conditions</property>
+                                <property name="width">440</property>
+                                <layout>
+                                  <property name="column">1</property>
+                                  <property name="columnspan">2</property>
+                                  <property name="propagate">True</property>
+                                  <property name="row">0</property>
+                                </layout>
+                                <child>
+                                  <object class="ttk.Label" id="label_par_num_con_61">
+                                    <property name="text" translatable="yes">Particle Number Concentration</property>
+                                    <property name="width">30</property>
+                                    <layout>
+                                      <property name="column">0</property>
+                                      <property name="columnspan">2</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">0</property>
+                                      <property name="sticky">w</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Entry" id="entry_par_num_con_29">
+                                    <layout>
+                                      <property name="column">2</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">0</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_par_num_con_unit_62">
+                                    <property name="text" translatable="yes">#/cm3</property>
+                                    <layout>
+                                      <property name="column">3</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">0</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_par_geo_ave_dia_63">
+                                    <property name="text" translatable="yes">Particle Geometric Average Diameter</property>
+                                    <property name="width">30</property>
+                                    <layout>
+                                      <property name="column">0</property>
+                                      <property name="columnspan">2</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">1</property>
+                                      <property name="sticky">w</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Entry" id="entry_par_geo_ave_dia_30">
+                                    <layout>
+                                      <property name="column">2</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">1</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_par_geo_ave_dia_unit_64">
+                                    <property name="text" translatable="yes">nm</property>
+                                    <layout>
+                                      <property name="column">3</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">1</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_geo_std_65">
+                                    <property name="text" translatable="yes">Geometric Standard Deviation</property>
+                                    <property name="width">30</property>
+                                    <layout>
+                                      <property name="column">0</property>
+                                      <property name="columnspan">2</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">2</property>
+                                      <property name="sticky">w</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Entry" id="entry_geo_std_31">
+                                    <layout>
+                                      <property name="column">2</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">2</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_geo_std_unit_66">
+                                    <property name="text" translatable="yes">(#, dimensionless)</property>
+                                    <layout>
+                                      <property name="column">3</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">2</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_sat_ratio_67">
+                                    <property name="text" translatable="yes">Saturation Ratio</property>
+                                    <property name="width">30</property>
+                                    <layout>
+                                      <property name="column">0</property>
+                                      <property name="columnspan">2</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">3</property>
+                                      <property name="sticky">w</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Entry" id="entry_sat_ratio_32">
+                                    <layout>
+                                      <property name="column">2</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">3</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_sat_ratio_unit_68">
+                                    <property name="text" translatable="yes">(#, dimensionless)</property>
+                                    <layout>
+                                      <property name="column">3</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">3</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_sim_time_69">
+                                    <property name="text" translatable="yes">Simulation Time</property>
+                                    <property name="width">30</property>
+                                    <layout>
+                                      <property name="column">0</property>
+                                      <property name="columnspan">2</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">4</property>
+                                      <property name="sticky">w</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Entry" id="entry_sim_time_33">
+                                    <layout>
+                                      <property name="column">2</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">4</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_sim_time_unit_70">
+                                    <property name="text" translatable="yes">sec</property>
+                                    <layout>
+                                      <property name="column">3</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">4</property>
+                                      <property name="sticky">e</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="ttk.Labelframe" id="frame_phenomena_12">
+                                <property name="height">100</property>
+                                <property name="text" translatable="yes">Phenomena</property>
+                                <property name="width">300</property>
+                                <layout>
+                                  <property name="column">1</property>
+                                  <property name="columnspan">2</property>
+                                  <property name="propagate">True</property>
+                                  <property name="row">1</property>
+                                  <property name="sticky">w</property>
+                                </layout>
+                                <child>
+                                  <object class="ttk.Checkbutton" id="checkbtn_coag_9">
+                                    <property name="text" translatable="yes">Coagulation</property>
+                                    <layout>
+                                      <property name="column">0</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">0</property>
+                                      <property name="sticky">w</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Checkbutton" id="checkbtn_cond_10">
+                                    <property name="text" translatable="yes">Condensation</property>
+                                    <layout>
+                                      <property name="column">0</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">1</property>
+                                      <property name="sticky">w</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Checkbutton" id="checkbtn_nuclea_11">
+                                    <property name="text" translatable="yes">Nucleation</property>
+                                    <layout>
+                                      <property name="column">0</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">2</property>
+                                      <property name="sticky">w</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Checkbutton" id="checkbtn_react_12">
+                                    <property name="text" translatable="yes">Reaction</property>
+                                    <layout>
+                                      <property name="column">0</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">3</property>
+                                      <property name="sticky">w</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="ttk.Frame" id="frame_input_btn_3">
+                                <property name="height">200</property>
+                                <property name="width">200</property>
+                                <layout>
+                                  <property name="column">2</property>
+                                  <property name="columnspan">2</property>
+                                  <property name="propagate">True</property>
+                                  <property name="row">1</property>
+                                  <property name="sticky">se</property>
+                                </layout>
+                                <child>
+                                  <object class="ttk.Button" id="btn_input_file_7">
+                                    <property name="text" translatable="yes">Read Input from File</property>
+                                    <layout>
+                                      <property name="column">0</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">0</property>
+                                      <property name="sticky">w</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="ttk.Labelframe" id="frame_output_discrete">
+                            <property name="height">220</property>
+                            <property name="text" translatable="yes">Output</property>
+                            <property name="width">880</property>
+                            <layout>
+                              <property name="column">0</property>
+                              <property name="propagate">False</property>
+                              <property name="row">1</property>
+                            </layout>
+                            <child>
+                              <object class="pygubu.builder.widgets.scrolledframe" id="scrolledframe_3">
+                                <property name="height">200</property>
+                                <property name="scrolltype">vertical</property>
+                                <property name="usemousewheel">true</property>
+                                <property name="width">880</property>
+                                <layout>
+                                  <property name="column">0</property>
+                                  <property name="propagate">True</property>
+                                  <property name="row">0</property>
+                                  <property name="rowspan">4</property>
+                                </layout>
+                                <child>
+                                  <object class="tk.Text" id="Text_4">
+                                    <property name="height">200</property>
+                                    <property name="text" translatable="yes">(stdout)</property>
+                                    <property name="width">880</property>
+                                    <layout>
+                                      <property name="column">0</property>
+                                      <property name="propagate">True</property>
+                                      <property name="row">0</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="ttk.Button" id="btn_run_8">
+                                <property name="text" translatable="yes">Run</property>
+                                <layout>
+                                  <property name="column">1</property>
+                                  <property name="propagate">True</property>
+                                  <property name="row">0</property>
+                                </layout>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="ttk.Button" id="btn_output_to_file_9">
+                                <property name="text" translatable="yes">Select Output File</property>
+                                <layout>
+                                  <property name="column">1</property>
+                                  <property name="propagate">True</property>
+                                  <property name="row">1</property>
+                                </layout>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="ttk.Label" id="label_logo_main_71">
+                                <property name="image">AAQRL_logo.png</property>
+                                <property name="text" translatable="yes">Logo</property>
+                                <layout>
+                                  <property name="column">2</property>
+                                  <property name="propagate">True</property>
+                                  <property name="row">0</property>
+                                  <property name="rowspan">4</property>
+                                  <property name="sticky">e</property>
+                                </layout>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="ttk.Progressbar" id="Progressbar_4">
+                                <property name="orient">horizontal</property>
+                                <layout>
+                                  <property name="column">1</property>
+                                  <property name="propagate">True</property>
+                                  <property name="row">3</property>
+                                </layout>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="ttk.Label" id="label_progress_bar_72">
+                                <property name="text" translatable="yes">Running Progress Bar</property>
+                                <layout>
+                                  <property name="column">1</property>
+                                  <property name="propagate">True</property>
+                                  <property name="row">2</property>
+                                </layout>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="pygubu.builder.widgets.dialog" id="dlg_about">
+    <property name="geometry">500x230</property>
+    <property name="height">200</property>
+    <property name="minsize">100|100</property>
+    <property name="modal">false</property>
+    <property name="resizable">both</property>
+    <property name="title" translatable="yes">Aerosol Dynamic Models: About</property>
+    <property name="width">400</property>
+    <child>
+      <object class="ttk.Frame" id="about_fcontaner">
+        <property name="height">200</property>
+        <property name="width">400</property>
+        <layout>
+          <property name="column">0</property>
+          <property name="propagate">True</property>
+          <property name="row">0</property>
+          <property name="sticky">nsew</property>
+          <columns>
+            <column id="0">
+              <property name="weight">1</property>
+            </column>
+          </columns>
+          <rows>
+            <row id="0">
+              <property name="weight">1</property>
+            </row>
+          </rows>
+        </layout>
+        <child>
+          <object class="ttk.Frame" id="about_fmain">
+            <property name="height">200</property>
+            <property name="width">200</property>
+            <layout>
+              <property name="column">0</property>
+              <property name="propagate">True</property>
+              <property name="row">0</property>
+              <property name="sticky">nsew</property>
+              <columns>
+                <column id="0">
+                  <property name="weight">1</property>
+                </column>
+              </columns>
+              <rows>
+                <row id="0">
+                  <property name="weight">1</property>
+                </row>
+                <row id="1">
+                  <property name="weight">1</property>
+                </row>
+                <row id="2">
+                  <property name="weight">1</property>
+                </row>
+              </rows>
+            </layout>
+            <child>
+              <object class="ttk.Label" id="label_app_name">
+                <property name="font">{Helvetica} 16 {}</property>
+                <property name="takefocus">false</property>
+                <property name="text" translatable="yes">Aerosol Dynamics Models</property>
+                <layout>
+                  <property name="column">0</property>
+                  <property name="propagate">True</property>
+                  <property name="row">0</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.Label" id="label_app_description">
+                <property name="justify">right</property>
+                <property name="text" translatable="yes">This is a software containing different models for aerosol dynamics.</property>
+                <layout>
+                  <property name="column">0</property>
+                  <property name="propagate">True</property>
+                  <property name="row">1</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.Label" id="label_copyright">
+                <property name="font">TkSmallCaptionFont</property>
+                <property name="justify">right</property>
+                <property name="text" translatable="yes">Copyright © 2019 Aerosol and Air Quality Laboratory (AAQRL), Washington University in St. Louis</property>
+                <property name="underline">0</property>
+                <layout>
+                  <property name="column">0</property>
+                  <property name="propagate">True</property>
+                  <property name="row">2</property>
+                </layout>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Frame" id="about_fbottom">
+            <property name="height">200</property>
+            <property name="padding">2 20 2 2</property>
+            <property name="width">200</property>
+            <layout>
+              <property name="column">0</property>
+              <property name="propagate">True</property>
+              <property name="row">1</property>
+              <property name="sticky">ew</property>
+              <columns>
+                <column id="0">
+                  <property name="weight">1</property>
+                </column>
+              </columns>
+            </layout>
+            <child>
+              <object class="ttk.Button" id="btn_about_close">
+                <property name="text" translatable="yes">Close</property>
+                <layout>
+                  <property name="column">0</property>
+                  <property name="propagate">True</property>
+                  <property name="row">1</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.Label" id="label_logo">
+                <property name="image">AAQRL_logo.png</property>
+                <layout>
+                  <property name="column">0</property>
+                  <property name="propagate">True</property>
+                  <property name="row">0</property>
+                </layout>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>
