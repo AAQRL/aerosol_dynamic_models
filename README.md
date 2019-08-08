@@ -1,1 +1,1 @@
-# aerosol_dynamic_models
+# aerosol_dynamic_models for industrial applications
