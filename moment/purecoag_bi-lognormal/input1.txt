@@ -1,8 +1,0 @@
-1e16 1.0e-9 1.0 ! Ntot (#m-3); dpg (m); sigmag
-0.000001 ! Saturation Pressure
-79.8e-3 4230.0 25.0e-3 ! Molecular Weight of the species (Kg/mol), Density of the species (Kg/m3), surface tension (Nm)
-1 ! Flag for coagulation (1 means TRUE, 0 means FALSE)
-0 ! Flag for condensation (1 means TRUE (using vapor condensation), 0 means FALSE, 2 means surface growth through reaction)
-0 ! Flag for nucleation (1 means TRUE & Classical nucleation theory, 2 means reaction to form particles directly,  0 means FALSE)
-0 ! Flag for reaction (1 means TRUE, 0 means FALSE)
-0.1 ! dimensionless reaction rate
