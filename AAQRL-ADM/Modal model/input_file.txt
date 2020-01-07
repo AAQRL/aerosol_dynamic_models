@@ -1,0 +1,32 @@
+1.0 ! INITIAL PARTICLE PROPERTIES
+1000E-6 ! Initial Vapor Pressure (Pa)
+1E-6 ! Saturation Pressure (Pa)
+0 ! Vapor Generation Rate (#/m3/s)
+
+2.0 ! SPECIES PROPERTIES
+100E-3 ! Molecular Weight of the species (kg/mol)
+1E3 ! Density of the species (kg/m3)
+25E-3 ! Surface Tension (N/m)
+
+3.0 ! GAS PROPERTIES
+29E-3 ! Molecular Weight of gas (kg/mol)
+1.225 ! Density of gas at 298 K (kg/m3)
+1.9533E-5 ! Viscosity of gas at Tref = 298 K (Pa.s)
+110.4 ! Sutherland's Constant
+67.4E-09 ! Mean free path of gas molecules (m3)
+
+4.0 ! SYSTEM PROPERTIES
+1e5 ! Pressure (Pa)
+390 ! Temperature (K)
+
+5.0 ! SIMULATION TIME
+0.01 ! Final time in seconds
+0.01 ! Time step
+
+6.0 ! MODES
+2 ! Number of modes
+
+7.0 ! AEROSOL PROCESSES (if ON set to 1)
+1 ! Coagulation 
+0 ! Condensation 
+0 ! Nucleation
